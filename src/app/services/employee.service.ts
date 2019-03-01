@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument
-} from "@angular/fire/firestore";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { Employee } from "../models/Employee";
+import { Employee } from '../models/Employee';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class EmployeeService {
   employeeDoc: AngularFirestoreDocument;
@@ -19,8 +19,8 @@ export class EmployeeService {
   employee: Observable<Employee>;
 
   constructor(private afs: AngularFirestore) {
-    this.employeeCollection = afs.collection("employees", ref =>
-      ref.orderBy("lastName", "asc")
+    this.employeeCollection = afs.collection('employees', ref =>
+      ref.orderBy('lastName', 'asc')
     );
   }
 
@@ -36,5 +36,10 @@ export class EmployeeService {
     );
 
     return this.employees;
+  }
+
+  newEmployee(employee: Employee) {
+    employee.joinedOn = new Date();
+    this.employeeCollection.add(employee);
   }
 }

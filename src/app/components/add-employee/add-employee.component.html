@@ -1,15 +1,136 @@
 <div class="row">
   <div class="col-md-6">
-    <a routerLink="/" class="btn btn-link"><i class="fa fa-arrow-circle-o-left"></i> Back to Dashboard</a>
+    <a routerLink="/" class="btn btn-link"
+      ><i class="fa fa-arrow-circle-o-left"></i> Back to Dashboard</a
+    >
   </div>
   <div class="col-md-6"></div>
 </div>
 
 <div class="card">
   <div class="card-header">
-    Add Client
+    Add Employee
   </div>
   <div class="card-body">
-    <form #employeeForm="ngForm"></form>
+    <form #employeeForm="ngForm" (submit)="onSubmit(employeeForm)">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="firstName"
+          #employeeFN="ngModel"
+          [(ngModel)]="firstName"
+          [ngClass]="{ 'is-invalid': employeeFN.errors && employeeFN.touched }"
+          minlength="2"
+          required
+        />
+
+        <div [hidden]="!employeeFN.errors?.required" class="invalid-feedback">
+          First Name is required
+        </div>
+        <div [hidden]="!employeeFN.errors?.minlength" class="invalid-feedback">
+          Must be at least two characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="lastName"
+          #employeeLN="ngModel"
+          [(ngModel)]="lastName"
+          [ngClass]="{ 'is-invalid': employeeLN.errors && employeeLN.touched }"
+          minlength="2"
+          required
+        />
+
+        <div [hidden]="!employeeLN.errors?.required" class="invalid-feedback">
+          Last Name is required
+        </div>
+        <div [hidden]="!employeeLN.errors?.minlength" class="invalid-feedback">
+          Must be at least two characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          name="phone"
+          #employeePhone="ngModel"
+          [(ngModel)]="phone"
+          [ngClass]="{
+            'is-invalid': employeePhone.errors && employeePhone.touched
+          }"
+          maxlength="10"
+          required
+        />
+
+        <div
+          [hidden]="!employeePhone.errors?.required"
+          class="invalid-feedback"
+        >
+          Phone is required
+        </div>
+        <div
+          [hidden]="!employeePhone.errors?.minlength"
+          class="invalid-feedback"
+        >
+          Must be 10 digits
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          #employeeEmail="ngModel"
+          [(ngModel)]="email"
+          [ngClass]="{
+            'is-invalid': employeeEmail.errors && employeeEmail.touched
+          }"
+          pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+          required
+        />
+
+        <div
+          [hidden]="!employeeEmail.errors?.required"
+          class="invalid-feedback"
+        >
+          Email is required
+        </div>
+        <div [hidden]="!employeeEmail.errors?.pattern" class="invalid-feedback">
+          Invalid Email ID
+        </div>
+      </div>
+      <label for="department">Department</label><br />
+      <select
+        name="department"
+        class="form-control"
+        #employeeDepartment="ngModel"
+        [(ngModel)]="department"
+      >
+        <option value="IT">IT</option>
+        <option value="Human Resources">Human Resources</option>
+        <option value="Operations">Operations</option>
+        <option value="Management">Management</option>
+        <option value="Sr. Management">Sr. Management</option>
+        <option value="Business Development">Business Development</option>
+        <option value="Customer Support">Customer Support</option>
+        <option value="Intern">Intern</option>
+      </select>
+
+      <input
+        type="submit"
+        value="Submit"
+        class="btn btn-primary btn-block mt-3"
+      />
+    </form>
   </div>
 </div>

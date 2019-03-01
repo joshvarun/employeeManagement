@@ -1,27 +1,28 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
-import { environment } from "../environments/environment";
-import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { NavbarComponent } from "./components/navbar/navbar.component";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
-import { EmployeesComponent } from "./components/employees/employees.component";
-import { SidebarComponent } from "./components/sidebar/sidebar.component";
-import { AddEmployeeComponent } from "./components/add-employee/add-employee.component";
-import { EditEmployeeComponent } from "./components/edit-employee/edit-employee.component";
-import { EmployeeDetailComponent } from "./components/employee-detail/employee-detail.component";
-import { LoginComponent } from "./components/login/login.component";
-import { RegisterComponent } from "./components/register/register.component";
-import { SettingsComponent } from "./components/settings/settings.component";
-import { NotFoundComponent } from "./components/not-found/not-found.component";
-import { EmployeeService } from "./services/employee.service";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
+import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { EmployeeService } from './services/employee.service';
 
 @NgModule({
   declarations: [
@@ -41,10 +42,11 @@ import { EmployeeService } from "./services/employee.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase, "employeeManagement"),
+    AngularFireModule.initializeApp(environment.firebase, 'employeeManagement'),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]
