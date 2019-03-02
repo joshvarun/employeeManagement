@@ -23,6 +23,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { EmployeeService } from './services/employee.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { EmployeeService } from './services/employee.service';
     FormsModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
