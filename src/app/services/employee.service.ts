@@ -17,6 +17,7 @@ export class EmployeeService {
   employeeCollection: AngularFirestoreCollection;
   employees: Observable<Employee[]>;
   employee: Observable<Employee>;
+  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   constructor(private afs: AngularFirestore) {
     this.employeeCollection = afs.collection('employees', ref =>
@@ -39,7 +40,24 @@ export class EmployeeService {
   }
 
   newEmployee(employee: Employee) {
-    employee.joinedOn = new Date();
+    const date = new Date();
+    employee.joinedOn = date.getDate() + ' ' + this.months[date.getMonth()] + ', ' + date.getFullYear() ;
     this.employeeCollection.add(employee);
+  }
+
+  getEmployee(id: string): Observable<Employee> {
+    this.employeeDoc = this.afs.doc<Employee>(`employees/${id}`);
+    this.employee = this.employeeDoc.snapshotChanges().pipe(
+      map(action => {
+        if (action.payload.exists === false) {
+          return null;
+        } else {
+          const data = action.payload.data() as Employee;
+          data.id = action.payload.id;
+          return data;
+        }
+      })
+    );
+    return this.employee;
   }
 }
