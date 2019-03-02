@@ -45,6 +45,14 @@ export class EmployeeService {
     this.employeeCollection.add(employee);
   }
 
+  updateEmployee(employee: Employee) {
+    this.employeeDoc.update(employee);
+  }
+
+  deleteEmployee() {
+    this.employeeDoc.delete();
+  }
+
   getEmployee(id: string): Observable<Employee> {
     this.employeeDoc = this.afs.doc<Employee>(`employees/${id}`);
     this.employee = this.employeeDoc.snapshotChanges().pipe(

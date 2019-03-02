@@ -20,7 +20,7 @@
           class="form-control"
           name="firstName"
           #employeeFN="ngModel"
-          [(ngModel)]="firstName"
+          [(ngModel)]="employee.firstName"
           [ngClass]="{ 'is-invalid': employeeFN.errors && employeeFN.touched }"
           minlength="2"
           required
@@ -41,7 +41,7 @@
           class="form-control"
           name="lastName"
           #employeeLN="ngModel"
-          [(ngModel)]="lastName"
+          [(ngModel)]="employee.lastName"
           [ngClass]="{ 'is-invalid': employeeLN.errors && employeeLN.touched }"
           minlength="2"
           required
@@ -62,7 +62,7 @@
           class="form-control"
           name="phone"
           #employeePhone="ngModel"
-          [(ngModel)]="phone"
+          [(ngModel)]="employee.phone"
           [ngClass]="{
             'is-invalid': employeePhone.errors && employeePhone.touched
           }"
@@ -91,7 +91,7 @@
           class="form-control"
           name="email"
           #employeeEmail="ngModel"
-          [(ngModel)]="email"
+          [(ngModel)]="employee.email"
           [ngClass]="{
             'is-invalid': employeeEmail.errors && employeeEmail.touched
           }"
@@ -114,7 +114,7 @@
         name="department"
         class="form-control"
         #employeeDepartment="ngModel"
-        [(ngModel)]="department"
+        [(ngModel)]="employee.department"
       >
         <option value="IT">IT</option>
         <option value="Human Resources">Human Resources</option>

@@ -32,4 +32,23 @@ export class EmployeeDetailComponent implements OnInit {
       }
     });
   }
+
+  onDeleteClick() {
+    if (
+      confirm(
+        'Are you sure you want to delete ' +
+          this.employee.firstName +
+          ' ' +
+          this.employee.lastName +
+          '?'
+      )
+    ) {
+      this.employeeService.deleteEmployee();
+      this.flashMessage.show('Employee deleted!', {
+        cssClass: 'alert-success',
+        timeout: 5000
+      });
+      this.router.navigate(['/']);
+    }
+  }
 }
