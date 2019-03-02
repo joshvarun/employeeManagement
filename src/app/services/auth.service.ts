@@ -5,16 +5,23 @@ import { AngularFireAuth } from 'angularfire2/auth';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth) {}
 
   async login(email: string, password: string) {
     return await new Promise((resolve, reject) => {
-      this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(userData => resolve(userData), err => reject(err));
+      this.afAuth.auth
+        .signInWithEmailAndPassword(email, password)
+        .then(userData => resolve(userData), err => reject(err));
     });
   }
 
+  async register(email: string, password: string) {
+    return await new Promise((resolve, reject) => {
+      this.afAuth.auth
+        .createUserWithEmailAndPassword(email, password)
+        .then(userData => resolve(userData), err => reject(err));
+    });
+  }
 
   getAuth() {
     return this.afAuth.authState.pipe();
