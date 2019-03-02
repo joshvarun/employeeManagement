@@ -12,6 +12,7 @@ import { Employee } from 'src/app/models/Employee';
 export class EmployeeDetailComponent implements OnInit {
   id: string;
   employee: Employee;
+  idParam = 'id';
 
   constructor(
     private employeeService: EmployeeService,
@@ -21,7 +22,7 @@ export class EmployeeDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params[this.idParam];
     this.employeeService.getEmployee(this.id).subscribe(employee => {
       console.log(employee);
       if (employee != null) {
